@@ -45,7 +45,9 @@ MediaPlayer.dependencies.protection.KeySystem_Widevine = function() {
                 url,
                 self = this;
 
-            url = (protData && protData.laURL && protData.laURL !== "") ? protData.laURL : laURL;
+            url = "http://wv-ref-eme-player.appspot.com/proxy";
+
+            //url = (protData && protData.laURL && protData.laURL !== "") ? protData.laURL : laURL;
             if (!url) {
                 self.notify(MediaPlayer.dependencies.protection.KeySystem.eventList.ENAME_LICENSE_REQUEST_COMPLETE,
                     null, new Error('DRM: No valid Widevine Proxy Server URL specified!'));
