@@ -45,7 +45,10 @@ MediaPlayer.dependencies.protection.KeySystem_Widevine = function() {
                 url,
                 self = this;
 
-            url = "http://wv-ref-eme-player.appspot.com/proxy";
+            //url = "http://wv-ref-eme-player.appspot.com/proxy";
+            //url = "http://localhost:4567/passthrough";
+            url = "http://ec2-54-68-215-251.us-west-2.compute.amazonaws.com:5000/proxy";
+            //url = "https://license.uat.widevine.com/cenc/getcontentkey/widevine_test"
 
             //url = (protData && protData.laURL && protData.laURL !== "") ? protData.laURL : laURL;
             if (!url) {
@@ -53,6 +56,7 @@ MediaPlayer.dependencies.protection.KeySystem_Widevine = function() {
                     null, new Error('DRM: No valid Widevine Proxy Server URL specified!'));
             } else {
                 xhr.open('POST', url, true);
+                xhr.setRequestHeader("Content-type","application/octet-stream");
                 xhr.responseType = 'arraybuffer';
                 xhr.onload = function() {
                     if (this.status == 200) {
